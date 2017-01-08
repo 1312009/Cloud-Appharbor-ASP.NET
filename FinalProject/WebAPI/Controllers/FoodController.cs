@@ -68,7 +68,9 @@ namespace WebAPI.Controllers
         [HttpGet]
         public List<FOOD> GetFOODs()
         {
+            int t=0;
             var foods = from a in db.FOODs
+                        where a.ISSALE!=0
                         select a;
             return foods.ToList();
         }
