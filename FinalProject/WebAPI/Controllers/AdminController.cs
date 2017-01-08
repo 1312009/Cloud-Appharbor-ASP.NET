@@ -96,6 +96,8 @@ namespace WebAPI.Controllers
         [HttpPost]
         public bool AddFood(FOOD food)
         {
+            food.ISSALE = 1;
+            food.NUMBER = 100;
             db.usp_ThemMonAn(food.NAME, food.DECRIPTION, food.ISSALE, food.IDTYPE, food.IMGFOOD, food.PRICE, food.NUMBER);
             return true;
         }
