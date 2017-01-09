@@ -51,9 +51,10 @@ namespace WebAPI.Controllers
             }
             mailMessagCus.Body = mailMessagCus.Body + " Tổng tiền: " + sum;
             mailMessagCus.Body = mailMessagCus.Body + "Địa chỉ nhận đơn hàng : "+odersUser.Address+","+odersUser.Ward+","+odersUser.District;
+            string temp = mailMessagCus.Body.ToString();
             SmtpClient client = new SmtpClient();
             client.Send(mailMessagCus);
-            SendSMS("+84981103589", mailMessagCus.Body);
+            SendSMS("+84981103589", temp);
 
             return true;
         }
