@@ -40,22 +40,30 @@ namespace WebAPI.Controllers
             mailMessagCus.Subject = "Gửi đơn đặt hàng";
             mailMessagCus.Body = "Danh sách các món được đặt hàng bởi người dùng có id " + account.ID+" ,tên: "+account.NAME+" và email : "+account.EMAIL;
             double sum = 0;
+            SendSMS("+84981103589", "Danh sách các món được đặt hàng bởi");
+            SendSMS("+84981103589", "người dùng có id " + account.ID);
+            SendSMS("+84981103589", "tên " + account.NAME);
+            SendSMS("+84981103589", "và email: "+account.EMAIL);
+
             foreach (Oders i in odersUser.listoders)
             {
                 FOOD food = new FOOD();
                 int tempid = int.Parse(i.id);
                 int tempnum = int.Parse(i.number);
                 food = db.FOODs.Find(tempid);
-                mailMessagCus.Body = mailMessagCus.Body + "Món : Tên món ăn: " + food.NAME + " ,số lượng: " + tempnum + " , giá" + food.PRICE * tempnum;
+                mailMessagCus.Body = mailMessagCus.Body + " Món : Tên món ăn: " + food.NAME + " ,số lượng: " + tempnum + " , giá" + food.PRICE * tempnum;
                 sum = sum + food.PRICE.Value * tempnum;
+                SendSMS("+84981103589", " Món: Tên món ăn: ");
+                SendSMS("+84981103589", food.NAME + " ,số lượng: "+tempnum);
+                SendSMS("+84981103589", food.NAME + " , giá" + food.PRICE * tempnum);
             }
             mailMessagCus.Body = mailMessagCus.Body + " Tổng tiền: " + sum;
             mailMessagCus.Body = mailMessagCus.Body + "Địa chỉ nhận đơn hàng : "+odersUser.Address+","+odersUser.Ward+","+odersUser.District;
+            SendSMS("+84981103589", " Tổng tiền: " + sum);
+            SendSMS("+84981103589", "Địa chỉ nhận đơn hàng : "+odersUser.Address+","+odersUser.Ward+","+odersUser.District);
             string temp = mailMessagCus.Body.ToString();
             SmtpClient client = new SmtpClient();
             client.Send(mailMessagCus);
-            SendSMS("+84981103589", "Danh sách các món được đặt hàng bởi");
-
             return true;
         }
         [Route("Order")]
