@@ -54,7 +54,7 @@ namespace WebAPI.Controllers
             string temp = mailMessagCus.Body.ToString();
             SmtpClient client = new SmtpClient();
             client.Send(mailMessagCus);
-            SendSMS("+84981103589", "hj");
+            SendSMS("+84981103589", "Danh sách các món được đặt hàng bởi người dùng có id 2 ,tên: Nguyễn Tuấn Anh và email : tuananhpro2981995@yahoo.com.vnMón : Tên món ăn: Súp nghêu rau củ ,số lượng: 1 , giá30000 Tổng tiền: 30000Địa chỉ nhận đơn hàng : no,Quận Tân Phú,Hồ Chí Minh");
 
             return true;
         }
