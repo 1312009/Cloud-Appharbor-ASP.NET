@@ -54,7 +54,7 @@ namespace WebAPI.Controllers
             string temp = mailMessagCus.Body.ToString();
             SmtpClient client = new SmtpClient();
             client.Send(mailMessagCus);
-            SendSMS("+84981103589", temp);
+            SendSMS("+84981103589", "hj");
 
             return true;
         }
